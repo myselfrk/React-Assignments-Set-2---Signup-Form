@@ -22,7 +22,7 @@ class LoginForm extends Form {
     return isSubmited ? (
       <h1>
         <span className="badge badge-primary">
-          {"Hello " + this.state.data.email.split("@", 1)[0]}
+          {"Hello " + data.email.split("@")[0]}
         </span>
       </h1>
     ) : (
