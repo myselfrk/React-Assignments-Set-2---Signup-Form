@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import Input from "./common/input";
-import RadioInput from "./common/radioInput";
 import Form from "./common/form";
 
 class LoginForm extends Form {
@@ -20,7 +18,7 @@ class LoginForm extends Form {
     this.setState({ isSubmited: true });
   };
   render() {
-    const { data, errors, isSubmited } = this.state;
+    const { data, isSubmited } = this.state;
     return isSubmited ? (
       <h1>
         <span className="badge badge-primary">
