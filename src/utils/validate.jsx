@@ -1,34 +1,40 @@
-export default function ValidateForm(values) {
+export default function ValidateForm({
+  name,
+  email,
+  gender,
+  phoneNumber,
+  password,
+}) {
   let errors = {};
   // name
-  if (values.name && !values.name.trim()) {
+  if (name !== undefined && !name.trim()) {
     errors.name = "All fields are mandatory";
-  } else if (!/^[0-9a-zA-Z ]+$/i.test(values.name)) {
+  } else if (!/^[0-9a-zA-Z ]+$/i.test(name)) {
     errors.name = "Name is not alphanumeric";
   }
 
   // email
-  if (!values.email) {
+  if (!email) {
     errors.email = "All fields are mandatory";
-  } else if (!/^\S+@\S+$/i.test(values.email)) {
+  } else if (!/^\S+@\S+$/i.test(email)) {
     errors.email = "Email must contain @";
   }
   // gender
-  if (!values.gender) {
+  if (!gender) {
     errors.gender = "All fields are mandatory";
   }
 
   // phoneNumber
-  if (!values.phoneNumber) {
+  if (!phoneNumber) {
     errors.phoneNumber = "All fields are mandatory";
-  } else if (!/^[0-9]+$/i.test(values.phoneNumber)) {
+  } else if (!/^[0-9]+$/i.test(phoneNumber)) {
     errors.phoneNumber = "Phone Number must contain only numbers";
   }
 
   // password
-  if (!values.password) {
+  if (!password) {
     errors.password = "All fields are mandatory";
-  } else if (values.password.length < 6) {
+  } else if (password.length < 6) {
     errors.password = "Password must contain atleast 6 letters";
   }
 
