@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Validate from "./../../utils/validate";
+import Validate from "./../../utils/validate.js";
 import Input from "./input";
 import RadioInput from "./radioInput";
 
