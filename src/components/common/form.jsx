@@ -19,14 +19,14 @@ class Form extends Component {
     data[input.name] = input.value;
     this.setState({ data, errors });
   };
-  validate = () => {
+  subValidate = () => {
     const errors = Validate(this.state.data);
     if (!errors) return null;
     return errors;
   };
   handleSubmit = (e) => {
     e.preventDefault();
-    const errors = this.validate();
+    const errors = this.subValidate();
     this.setState({ errors });
     if (Object.keys(errors).length !== 0) return;
     this.doSubmit();
