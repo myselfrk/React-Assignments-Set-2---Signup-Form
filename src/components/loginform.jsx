@@ -22,7 +22,7 @@ class LoginForm extends Form {
         message = "All fields are mandatory";
       }
     }
-    if (Object.keys(errors).length !== 0) {
+    if (!message && Object.keys(errors).length !== 0) {
       message = errors[Object.keys(errors)[0]];
     }
     this.setState({ message });
