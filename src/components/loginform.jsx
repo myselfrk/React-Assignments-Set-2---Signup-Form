@@ -11,8 +11,9 @@ class LoginForm extends Form {
       phoneNumber: "",
     },
     errors: {},
-    isSubmited: false,
     message: null,
+    isSubmited: false,
+    username: "",
   };
 
   doSubmit = (errors) => {
@@ -28,19 +29,30 @@ class LoginForm extends Form {
     this.setState({ message });
 
     if (message === null) {
-      this.setState({ message: null, isSubmited: true });
+      let username = this.state.data.email.split("@")[0];
+      this.setState({
+        data: {
+          name: "",
+          password: "",
+          email: "",
+          gender: "male",
+          phoneNumber: "",
+        },
+        message: null,
+        isSubmited: true,
+        username,
+      });
     }
   };
   render() {
-    const { data, isSubmited, message } = this.state;
-    return isSubmited ? (
-      <h1>
-        <span className="badge badge-dark">
-          {"Hello " + data.email.split("@")[0]}
-        </span>
-      </h1>
-    ) : (
+    const { data, isSubmited, username, message } = this.state;
+    return (
       <div className="col-6 mx-auto">
+        {isSubmited && (
+          <h1>
+            <span className="badge badge-dark">{"Hello " + username}</span>
+          </h1>
+        )}
         {message && <div className="alert alert-danger">{message}</div>}
         <form onSubmit={this.handleSubmit}>
           {this.renderInput("name", "Name")}
