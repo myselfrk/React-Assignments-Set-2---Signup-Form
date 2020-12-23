@@ -45,7 +45,7 @@ class LoginForm extends Form {
         <form onSubmit={this.handleSubmit}>
           {this.renderInput("name", "Name")}
           {this.renderInput("email", "Email")}
-          {this.renderRadio(
+          {this.renderSelect(
             "gender",
             "Gender",
             ["male", "female", "other"],

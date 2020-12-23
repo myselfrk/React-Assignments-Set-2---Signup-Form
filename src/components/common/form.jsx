@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Validate from "./../../utils/validate.js";
 import Input from "./input";
-import RadioInput from "./radioInput";
+import Select from "./select";
 
 class Form extends Component {
   state = { data: {}, errors: {} };
@@ -36,20 +36,15 @@ class Form extends Component {
     );
   }
 
-  renderRadio(name, label, values, defaultRadio) {
+  renderSelect(name, label, options, defaultValue) {
     return (
-      <div data-testid={name}>
-        <label>{label}</label>
-        {values.map((value) => (
-          <RadioInput
-            key={value}
-            value={value}
-            name={name}
-            onChange={this.handleChange}
-            defaultChecked={defaultRadio === value}
-          />
-        ))}
-      </div>
+      <Select
+        name={name}
+        label={label}
+        options={options}
+        onChange={this.handleChange}
+        defaultValue={defaultValue}
+      />
     );
   }
 
