@@ -4,7 +4,13 @@ import Input from "./input";
 import Select from "./select";
 
 class Form extends Component {
-  state = { data: {}, errors: {} };
+  state = {
+    data: {},
+    errors: {},
+    message: null,
+    isSubmited: false,
+    username: "",
+  };
 
   handleChange = ({ target: input }) => {
     const data = { ...this.state.data };
@@ -19,7 +25,7 @@ class Form extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const errors = this.subValidate();
-    this.setState({ errors });
+    this.setState({ errors, isSubmited: false });
     this.doSubmit(errors);
   };
 
