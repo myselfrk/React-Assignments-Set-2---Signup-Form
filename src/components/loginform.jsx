@@ -21,7 +21,7 @@ class LoginForm extends Form {
     const { data, isSubmited } = this.state;
     return isSubmited ? (
       <h1>
-        <span className="badge badge-primary">
+        <span className="badge badge-dark">
           {"Hello " + data.email.split("@")[0]}
         </span>
       </h1>
