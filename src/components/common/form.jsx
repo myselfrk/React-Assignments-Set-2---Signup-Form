@@ -6,34 +6,25 @@ import RadioInput from "./radioInput";
 class Form extends Component {
   state = { data: {}, errors: {} };
 
-  validateProperty = ({ name, value }) => {
-    return Validate({ [name]: value })[name];
-  };
   handleChange = ({ target: input }) => {
-    const errors = { ...this.state.errors };
-    const errorMessage = this.validateProperty(input);
-    if (errorMessage) errors[input.name] = errorMessage;
-    else delete errors[input.name];
-
     const data = { ...this.state.data };
     data[input.name] = input.value;
-    this.setState({ data, errors });
+    this.setState({ data });
   };
   subValidate = () => {
     const errors = Validate(this.state.data);
-    if (!errors) return null;
+    if (Object.keys(errors).length === 0) return {};
     return errors;
   };
   handleSubmit = (e) => {
     e.preventDefault();
     const errors = this.subValidate();
     this.setState({ errors });
-    if (Object.keys(errors).length !== 0) return;
-    this.doSubmit();
+    this.doSubmit(errors);
   };
 
   renderInput(name, label, type = "text") {
-    const { data, errors } = this.state;
+    const { data } = this.state;
     return (
       <Input
         name={name}
@@ -41,13 +32,11 @@ class Form extends Component {
         label={label}
         value={data[name]}
         onChange={this.handleChange}
-        error={errors[name]}
       />
     );
   }
 
   renderRadio(name, label, values, defaultRadio) {
-    const error = this.state.errors[name];
     return (
       <div data-testid={name}>
         <label>{label}</label>
@@ -60,7 +49,6 @@ class Form extends Component {
             defaultChecked={defaultRadio === value}
           />
         ))}
-        {error && <div className="alert alert-danger">{error}</div>}
       </div>
     );
   }

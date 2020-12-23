@@ -12,13 +12,27 @@ class LoginForm extends Form {
     },
     errors: {},
     isSubmited: false,
+    message: null,
   };
 
-  doSubmit = () => {
-    this.setState({ isSubmited: true });
+  doSubmit = (errors) => {
+    let message = null;
+    for (let key in errors) {
+      if (errors[key] === "All fields are mandatory") {
+        message = "All fields are mandatory";
+      }
+    }
+    if (Object.keys(errors).length !== 0) {
+      message = errors[Object.keys(errors)[0]];
+    }
+    this.setState({ message });
+
+    if (message === null) {
+      this.setState({ message: null, isSubmited: true });
+    }
   };
   render() {
-    const { data, isSubmited } = this.state;
+    const { data, isSubmited, message } = this.state;
     return isSubmited ? (
       <h1>
         <span className="badge badge-dark">
@@ -27,6 +41,7 @@ class LoginForm extends Form {
       </h1>
     ) : (
       <div className="col-6 mx-auto">
+        {message && <div className="alert alert-danger">{message}</div>}
         <form onSubmit={this.handleSubmit}>
           {this.renderInput("name", "Name")}
           {this.renderInput("email", "Email")}
