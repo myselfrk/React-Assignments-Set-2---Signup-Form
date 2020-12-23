@@ -10,7 +10,6 @@ function RadioInput({ name, value, onChange, defaultChecked }) {
         value={value}
         onChange={onChange}
         className="form-check-input"
-        data-testid={name}
         defaultChecked={defaultChecked}
       />
       <label htmlFor={value} className="form-check-label">

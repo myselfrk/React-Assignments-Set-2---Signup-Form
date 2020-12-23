@@ -36,7 +36,7 @@ class LoginForm extends Form {
             ["male", "female", "other"],
             data.gender
           )}
-          {this.renderInput("phoneNumber", "Phone Number", "number")}
+          {this.renderInput("phoneNumber", "Phone Number")}
           {this.renderInput("password", "Password", "password")}
           {this.renderButton("submit")}
         </form>

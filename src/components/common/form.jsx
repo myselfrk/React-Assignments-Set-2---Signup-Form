@@ -49,7 +49,7 @@ class Form extends Component {
   renderRadio(name, label, values, defaultRadio) {
     const error = this.state.errors[name];
     return (
-      <div>
+      <div data-testid={name}>
         <label>{label}</label>
         {values.map((value) => (
           <RadioInput
